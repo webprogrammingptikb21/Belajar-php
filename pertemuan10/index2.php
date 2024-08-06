@@ -1,8 +1,14 @@
 <?php
 // koneksi ke database
-include "function.php";
+require "function.php";
 
-$mahasiswa = query("SELECT * FROM mahasiswa")
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+// tombol cari ditekan
+if (isset($_POST["cari"])) {
+    $mahasiswa = cari($_POST["keyword"]);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +21,19 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
 </head>
 
 <body>
-    <h1>Daftar Mahasiswa</h1>
+    <a href="index2.php">
+        <h1>Daftar Mahasiswa</h1>
+    </a>
 
     <a href="tambah.php">Tambah Data Mahasiswa</a>
-    <br>
-    <br>
 
+    <br>
+    <br>
+    <form action="" method="POST">
+        <input type="text" name="keyword" id="keyword" placeholder="Masukkan kata kunci" autofocus required>
+        <button type="submit" name="cari">Cari</button>
+    </form>
+    <br>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
             <th>No.</th>
@@ -35,14 +48,15 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
         <?php foreach ($mahasiswa as $row) : ?>
             <tr>
                 <td><?= $i; ?></td>
-                <td><a href="#">Ubah</a> |
-                    <a href="#">Hapus</a>
+                <td><a href="ubah.php?id=<?= $row["id"] ?>">Ubah</a> |
+                    <a href="hapus.php?id=<?= $row["id"] ?>" onclick="return confirm('Apakah anda yakin?');">Hapus</a>
                 </td>
                 <td><img src="./img/<?= $row["gambar"] ?>" alt="foto" width="70px" height="70px"></td>
                 <td> <?= $row["nim"] ?></td>
                 <td> <?= $row["nama"] ?></td>
                 <td> <?= $row["email"] ?></td>
                 <td><?= $row["jurusan"] ?></td>
+
             </tr>
             <?php $i++; ?>
         <?php endforeach; ?>
