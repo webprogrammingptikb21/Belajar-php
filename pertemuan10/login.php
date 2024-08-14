@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (isset($_SESSION["login"])) {
+    header("Location: index2.php ");
+    exit();
+}
 
 require 'function.php';
 
@@ -13,6 +19,9 @@ if (isset($_POST['login'])) {
         // cek password
         $row = mysqli_fetch_assoc($result);
         if (password_verify($password, $row["password"])) {
+            // set session
+            $_SESSION["login"] = true;
+
             header("Location: index2.php");
             exit;
         }
@@ -35,7 +44,7 @@ if (isset($_POST['login'])) {
     <h1>Halaman Login</h1>
 
     <?php if (isset($error)) : ?>
-        <p style="color: red; font-style:italic">Username / password salah</p>
+        <p style="color: red; font-style:italic;">Username atau password salah</p>
     <?php endif; ?>
     <form action="" method="post">
         <ul>

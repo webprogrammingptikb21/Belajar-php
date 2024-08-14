@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit();
+}
 // koneksi ke database
 require "function.php";
 
@@ -24,7 +30,8 @@ if (isset($_POST["cari"])) {
     <a href="index2.php">
         <h1>Daftar Mahasiswa</h1>
     </a>
-
+    <a href="logout.php">Logout</a>
+    <br>
     <a href="tambah.php">Tambah Data Mahasiswa</a>
 
     <br>
