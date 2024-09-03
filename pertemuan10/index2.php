@@ -42,12 +42,19 @@ if (empty($mahasiswa)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>php dasar</title>
 </head>
+<style>
+    @media print {
+        .logout {
+            display: none;
+        }
+    }
+</style>
 
 <body>
     <a href="index2.php">
         <h1>Daftar Mahasiswa</h1>
     </a>
-    <a href="logout.php">Logout</a>
+    <a href="logout.php" class="logout">Logout</a>
     <br>
     <a href="tambah.php">Tambah Data Mahasiswa</a>
     <br>

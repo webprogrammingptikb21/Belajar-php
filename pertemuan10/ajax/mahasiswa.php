@@ -14,7 +14,6 @@ $mahasiswa = query($query);
 if (empty($mahasiswa)) {
     echo "<p>Data mahasiswa dengan kata kunci <strong>'$keyword'</strong> tidak ditemukan.</p>";
     return;  // keluar loop jika data kosong
-
 }
 ?>
 <table border="1" cellpadding="10" cellspacing="0">
