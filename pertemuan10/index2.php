@@ -7,7 +7,7 @@ if (!isset($_SESSION["login"])) {
 }
 // koneksi ke database
 require "function.php";
-
+$mahasiswa = query("SELECT * FROM mahasiswa");
 
 // paginations
 // konfigurasi
@@ -54,7 +54,7 @@ if (empty($mahasiswa)) {
     <a href="index2.php">
         <h1>Daftar Mahasiswa</h1>
     </a>
-    <a href="logout.php" class="logout">Logout</a>
+    <a href="logout.php" class="logout">Logout</a> | <a href="cetak.php" target="_blank">Cetak</a>
     <br>
     <a href="tambah.php">Tambah Data Mahasiswa</a>
     <br>
